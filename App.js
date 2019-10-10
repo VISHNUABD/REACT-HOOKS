@@ -1,24 +1,41 @@
-import React ,{useState} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import './App.css'; 
-function App(){
-  return <Element/>
+import React,{useState} from 'react';
+const App=()=>{
+  return <Insert/>
 }
-const Element=()=>{
-  const [grett,fungreetings]=useState('');
-  const [butt,funbutt]=useState();
-   const handlepost=()=>{
-     funbutt(grett)
-   }
-  return (
-    <div>
-    <input type="text" value={grett} onChange={event=>fungreetings(event.target.value)}/>
-    <button onClick={handlepost}>press</button>
-    {butt ? (<ul>
-     <li>{butt}</li>
-     </ul>):null
-      }
-    </div>
-  );   
+const Insert=()=>{
+  const[input,inputchange]=useState([]);
+  const[print,printchange]=useState([]);
+
+  const changevalue=(event)=>{
+  inputchange(event.target.value)
   }
+
+  const printvalues=()=>{
+    if(print.length===0){
+      alert("please enter the text here");
+    }else{
+      printchange([...print,input])
+    }
+    
+  }
+  return(
+    <div>
+      <input type="text" placeholder="lets Rock" value={input} onChange={changevalue} ></input>
+      <button onClick={printvalues}>PRESS HERE</button>
+      <ul>
+      {
+        print.map(i=>{
+          return (<li key={i}>{i}</li>)
+          
+        })
+      }
+      </ul>
+    </div>
+  );
+}
+
 export default App;
+  
+
+
+
